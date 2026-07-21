@@ -23,7 +23,7 @@ Portfolio website where scrolling slowly opens a 3D laptop revealing a login pag
 - Testing: iteration_1.json — all flows pass (~95%); preview close-button overlay bug found & fixed (pointer-events on glow div)
 
 ## Content
-All personal data placeholder in /app/frontend/src/data/portfolio.js (PROFILE, BOOKS, PROJECTS, MANIFESTO) — user should supply real name/email/socials/projects.
+Personal data lives in /app/frontend/src/data/portfolio.js. Real name (Shreyash Shigwan) and email (shreyashshigwan12@gmail.com) set (June 2026). Phone, location, socials and projects still placeholder.
 
 ## Backlog
 - P0: Replace placeholder profile/projects content with user's real data

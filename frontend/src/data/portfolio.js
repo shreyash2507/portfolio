@@ -1,9 +1,9 @@
 export const PROFILE = {
-  name: "Aarav Malhotra",
-  firstName: "Aarav",
+  name: "Shreyash Shigwan",
+  firstName: "Shreyash",
   role: "Creative Developer",
   tagline: "I build interfaces that feel like objects.",
-  email: "hello@aarav.dev",
+  email: "shreyashshigwan12@gmail.com",
   phone: "+91 98765 43210",
   location: "Bengaluru, India",
   socials: [
