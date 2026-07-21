@@ -20,10 +20,11 @@ Portfolio website where scrolling slowly opens a 3D laptop revealing a login pag
 - Project cards (#work): click → lenis smooth-scroll back to laptop, lid opens, project preview renders on screen with glow (emissive + boxShadow) — user request iteration 2
 - Fixed login-screen drift on scroll via fixed stage refactor — user request iteration 2
 - Marquee, numbered manifesto chapters, projects list rows, contact + footer
+- Emergent-managed Google OAuth sign-in (June 2026): "Sign in with Google" on the laptop login screen; backend /api/auth/session, /api/auth/me, /api/auth/logout; httpOnly cookie sessions (7d) in MongoDB (users, user_sessions); signed-in view + navbar avatar; auth passed as props into drei <Html> (context doesn't cross roots). Tested: iteration_3.json 100% pass.
 - Testing: iteration_1.json — all flows pass (~95%); preview close-button overlay bug found & fixed (pointer-events on glow div)
 
 ## Content
-Personal data lives in /app/frontend/src/data/portfolio.js. Real name (Shreyash Shigwan) and email (shreyashshigwan12@gmail.com) set (June 2026). Phone, location, socials and projects still placeholder.
+Personal data lives in /app/frontend/src/data/portfolio.js. Real name (Shreyash Shigwan), email (shreyashshigwan12@gmail.com), phone (+91 93726 71748), location (Mumbai, India), LinkedIn + Twitter links set (June 2026). Projects still placeholder.
 
 ## Backlog
 - P0: Replace placeholder profile/projects content with user's real data
