@@ -4,13 +4,11 @@ export const PROFILE = {
   role: "Creative Developer",
   tagline: "I build interfaces that feel like objects.",
   email: "shreyashshigwan12@gmail.com",
-  phone: "+91 98765 43210",
-  location: "Bengaluru, India",
+  phone: "+91 93726 71748",
+  location: "Mumbai, India",
   socials: [
-    { label: "GitHub", url: "https://github.com" },
-    { label: "LinkedIn", url: "https://linkedin.com" },
-    { label: "Twitter / X", url: "https://x.com" },
-    { label: "Dribbble", url: "https://dribbble.com" },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/shreyash-shigwan-53a765403/" },
+    { label: "Twitter / X", url: "https://x.com/shreyyhey" },
   ],
 };
 

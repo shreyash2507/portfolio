@@ -3,6 +3,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { ContactShadows } from "@react-three/drei";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import * as THREE from "three";
+import { useAuth } from "../../context/AuthContext";
 import { Laptop } from "./Laptop";
 import { Books } from "./Books";
 import { BookPanel } from "./BookPanel";
@@ -21,14 +22,14 @@ const CameraRig = ({ progress }) => {
   return null;
 };
 
-const SceneContents = ({ progress, activeBook, onSelect, activeProject, onCloseProject }) => (
+const SceneContents = ({ progress, activeBook, onSelect, activeProject, onCloseProject, auth }) => (
   <>
     <ambientLight intensity={0.85} />
     <directionalLight position={[4, 6, 4]} intensity={1.4} castShadow shadow-mapSize={[1024, 1024]} />
     <directionalLight position={[-5, 4, -2]} intensity={0.5} color="#e8e4da" />
     <spotLight position={[0, 7, 2]} angle={0.5} penumbra={1} intensity={0.8} />
     <group position={[-0.7, 0, 0]}>
-      <Laptop progress={progress} activeProject={activeProject} onCloseProject={onCloseProject} />
+      <Laptop progress={progress} activeProject={activeProject} onCloseProject={onCloseProject} auth={auth} />
       <Books activeBook={activeBook} onSelect={onSelect} />
       <ContactShadows position={[0.9, 0, 0]} opacity={0.4} scale={12} blur={2.4} far={3} />
     </group>
@@ -39,6 +40,9 @@ export const LaptopSection = ({ activeProject, onCloseProject }) => {
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
   const [activeBook, setActiveBook] = useState(null);
+  // Auth is read here (main React tree) and passed as props — drei <Html> renders
+  // in a separate root, so context does not cross into the laptop screen.
+  const { user, login, logout } = useAuth();
 
   const hintOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
   const labelOpacity = useTransform(scrollYProgress, [0.55, 0.75], [0, 1]);
@@ -60,6 +64,7 @@ export const LaptopSection = ({ activeProject, onCloseProject }) => {
               onSelect={setActiveBook}
               activeProject={activeProject}
               onCloseProject={onCloseProject}
+              auth={{ user, login, logout }}
             />
             <CameraRig progress={scrollYProgress} />
           </Suspense>

@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { PROFILE } from "../data/portfolio";
+import { useAuth } from "../context/AuthContext";
 
-export const Navbar = () => (
+export const Navbar = () => {
+  const { user } = useAuth();
+  return (
   <motion.nav
     data-testid="main-navbar"
     initial={{ y: -60, opacity: 0 }}
@@ -18,12 +21,25 @@ export const Navbar = () => (
       <a href="#work" data-testid="nav-link-work" className="u-link hover:text-[#0a0a0a]">Work</a>
       <a href="#contact" data-testid="nav-link-contact" className="u-link hover:text-[#0a0a0a]">Contact</a>
     </div>
-    <a
-      href={`mailto:${PROFILE.email}`}
-      data-testid="nav-cta-button"
-      className="rounded-full bg-[#0a0a0a] text-[#f9f9f8] text-xs uppercase tracking-[0.15em] px-5 py-2.5 hover:bg-[#333] transition-colors duration-300"
-    >
-      Hire me
-    </a>
+    <div className="flex items-center gap-4">
+      {user && (
+        <img
+          data-testid="nav-user-avatar"
+          src={user.picture}
+          alt={user.name}
+          referrerPolicy="no-referrer"
+          title={user.name}
+          className="w-8 h-8 rounded-full border border-black/20 object-cover"
+        />
+      )}
+      <a
+        href={`mailto:${PROFILE.email}`}
+        data-testid="nav-cta-button"
+        className="rounded-full bg-[#0a0a0a] text-[#f9f9f8] text-xs uppercase tracking-[0.15em] px-5 py-2.5 hover:bg-[#333] transition-colors duration-300"
+      >
+        Hire me
+      </a>
+    </div>
   </motion.nav>
-);
+  );
+};

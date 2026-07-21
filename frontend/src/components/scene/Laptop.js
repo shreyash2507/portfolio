@@ -8,7 +8,7 @@ import { ProjectPreview } from "./ProjectPreview";
 const ALU = "#d8d8d4";
 const DARK = "#1c1c1a";
 
-export const Laptop = ({ progress, activeProject, onCloseProject }) => {
+export const Laptop = ({ progress, activeProject, onCloseProject, auth }) => {
   const lidRef = useRef();
   const screenHtmlRef = useRef();
   const glassMatRef = useRef();
@@ -103,7 +103,7 @@ export const Laptop = ({ progress, activeProject, onCloseProject }) => {
             {activeProject ? (
               <ProjectPreview project={activeProject} onClose={onCloseProject} />
             ) : (
-              <ScreenLogin />
+              <ScreenLogin auth={auth} />
             )}
           </div>
         </Html>

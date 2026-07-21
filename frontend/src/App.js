@@ -2,6 +2,8 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import "@/App.css";
 import Lenis from "lenis";
 import { Toaster } from "sonner";
+import { AuthProvider } from "./context/AuthContext";
+import { AuthCallback } from "./components/AuthCallback";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { LaptopSection } from "./components/scene/LaptopSection";
@@ -10,7 +12,7 @@ import { Manifesto } from "./components/Manifesto";
 import { Projects } from "./components/Projects";
 import { Contact, Footer } from "./components/Contact";
 
-function App() {
+function Portfolio() {
   const lenisRef = useRef(null);
   const [activeProject, setActiveProject] = useState(null);
 
@@ -51,6 +53,23 @@ function App() {
         <Footer />
       </div>
     </div>
+  );
+}
+
+function App() {
+  // synchronous check during render — must run before any auth check
+  const [processingAuth, setProcessingAuth] = useState(() =>
+    window.location.hash?.includes("session_id=")
+  );
+
+  return (
+    <AuthProvider>
+      {processingAuth ? (
+        <AuthCallback onDone={() => setProcessingAuth(false)} />
+      ) : (
+        <Portfolio />
+      )}
+    </AuthProvider>
   );
 }
 
