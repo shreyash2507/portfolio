@@ -1,0 +1,18 @@
+{
+  "summary": "Regression pass after requirements.txt restoration. Backend starts cleanly (no ImportError in supervisor logs), GET /api/ returns Hello World. All 9 auth pytest cases pass (session, /me bearer+cookie, expired, bogus, logout). Frontend hero renders and scrolling to laptop reveals login screen with data-testid=google-signin-button (visible, text 'Sign in with Google'). Only console errors are expected 401s from guest /api/auth/me. httpx integration verified working via successful session/logout flows.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": ["/app/backend/tests/test_auth.py", "/app/test_reports/pytest/auth_results.xml"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "requirements.txt is now a clean curated list (29 packages including httpx>=0.28.1) - no leaked internal packages. Good.",
+    "Non-blocking: guest visit produces 2x 401 console errors from /api/auth/me before AuthContext resolves - could be silenced by checking cookie first client-side, but harmless."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100% (9/9)", "frontend": "100%"},
+  "test_credentials": "MongoDB seeded (idempotent via setup_module): user_id=test-user-auth1, session_token=test_session_auth1",
+  "seed_data_creation": "Auto-reseeded by test_auth.py setup_module.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend regression suite: python -m pytest backend/tests/test_auth.py -v. Frontend laptop login: scroll window.innerHeight*2.6, wait 3s (Lenis), then query data-testid=google-signin-button."
+}
