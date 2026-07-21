@@ -40,6 +40,7 @@ export const ProjectPreview = ({ project, onClose }) => (
       <div
         style={{
           position: "absolute", top: -60, right: -60, width: 300, height: 300, borderRadius: "50%",
+          pointerEvents: "none",
           background: "radial-gradient(circle, rgba(216,207,174,0.22) 0%, rgba(216,207,174,0) 70%)",
         }}
       />
