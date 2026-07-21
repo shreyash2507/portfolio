@@ -1,0 +1,104 @@
+{
+  "theme_strategy": "Light Theme Priority - 'Off-White & Charcoal'. Context: High-end Awwwards-style portfolio requiring a tactile, editorial feel. Dark themes can feel too 'tech-heavy', whereas an organic bone-white base emphasizes the 3D objects and provides a clean canvas.",
+  "typography": {
+    "headings": {
+      "family": "'Playfair Display', serif",
+      "weights": ["400", "500"],
+      "usage": "Massive, expressive hero typography, numbered manifesto chapters, and section headers.",
+      "classes": "font-serif tracking-tighter leading-none"
+    },
+    "body": {
+      "family": "'Satoshi', sans-serif or 'Geist', sans-serif",
+      "weights": ["300", "400", "500"],
+      "usage": "Secondary text, UI elements, login page on laptop screen, and small labels.",
+      "classes": "font-sans tracking-tight leading-relaxed"
+    },
+    "hierarchy_rules": "H1: text-5xl md:text-6xl+ (fluid clamp). H2: text-3xl md:text-4xl. Eyebrows/Labels: uppercase, tracking-[0.2em], text-xs."
+  },
+  "colors": {
+    "background": {
+      "base": "#F9F9F8",
+      "alt": "#EAE9E5",
+      "noise_overlay": "rgba(0,0,0,0.02)"
+    },
+    "text": {
+      "primary": "#0A0A0A",
+      "secondary": "#5C5C5C",
+      "accent": "#8A8A85"
+    },
+    "interactive": {
+      "button_bg": "#0A0A0A",
+      "button_text": "#F9F9F8",
+      "hover": "#333333"
+    },
+    "rules": "No pure white (#FFFFFF) or pure black (#000000). Use 'Tinted Grey' rule. Ensure 4.5:1 contrast for all readable text. Provide explicit hover states."
+  },
+  "3d_libraries_and_steps": {
+    "core_stack": ["three", "@react-three/fiber", "@react-three/drei", "framer-motion", "gsap", "lenis"],
+    "implementation_steps": [
+      "1. Canvas Setup: Initialize <Canvas> with a fixed full-screen wrapper (z-index behind or explicitly layered with HTML). Set camera fov to 35 for a cinematic, less distorted look.",
+      "2. Scroll Environment: Wrap the 3D scene inside <ScrollControls pages={4} damping={0.2}> from @react-three/drei to bind R3F to the DOM scroll.",
+      "3. Laptop Model & Animation: Load a standard laptop GLTF (e.g., using useGLTF). Inside a useFrame hook, read scroll data via const scroll = useScroll() and map scroll.offset to the laptop hinge rotation (e.g., nodes.screen.rotation.x) so it slowly opens as the user scrolls down.",
+      "4. The Screen UI: Use the <Html transform wrapperClass='htmlScreen' distanceFactor={1.17} position={[0, 0, -0.2]} rotation-x={-0.256}> component attached to the laptop screen mesh to render the clean, functional React Login Page.",
+      "5. The 3D Books: Create a group of books beside the laptop using BoxGeometries or imported GLTFs. Use <Text> or <Html> from Drei to label the spines (e.g., 'About Me', 'Projects', 'Contact').",
+      "6. Interaction: Bind onClick events to the books to trigger camera fly-throughs using framer-motion-3d or GSAP, zooming into the specific book to reveal details."
+    ],
+    "lighting": "Use <Environment preset='city' /> for realistic reflections on the laptop screen and metallic parts. Add subtle <ContactShadows> under the laptop and books to ground them."
+  },
+  "layouts_and_grids": {
+    "html_overlay": "Use the <Scroll html> component from Drei to overlay standard React/Tailwind sections. Apply the 'Tetris' grid (grid-cols-12, wide gap-8) for HTML content like the manifesto.",
+    "spacing": "Generous Spacing Philosophy. Use p-12, p-24, py-32 to give the 3D canvas breathing room.",
+    "alignment": "Left-align paragraphs. Use optical alignment for UI. Avoid centering everything to create tension."
+  },
+  "visual_enhancers": {
+    "textures": "Apply a subtle white noise/grain texture overlaid across the entire screen using pointer-events-none and mix-blend-multiply.",
+    "marquee": "Use an 'Editorial Ribbon' marquee for tech stack or chapter titles. Slow smooth drift, low contrast.",
+    "motion": "Implement Lenis for buttery smooth momentum scrolling. Use Framer Motion for line-by-line text reveals on the hero section load.",
+    "surfaces": "Use 'Glassmorphism' (backdrop-blur-xl bg-white/70, 1px border-white/40) for floating navigation elements."
+  },
+  "component_usage_rules": {
+    "marketing_sections": "Use raw HTML + Tailwind CSS (div, section) for highly customized, overlapping layouts.",
+    "login_page_on_screen": "Use customized Shadcn UI primitives (Input, Button, Form) heavily styled to fit a minimalist, stark 'terminal' or 'clean tech' aesthetic on the laptop screen.",
+    "icons": "Use @phosphor-icons/react (Duotone or Light weights) for elegant, high-end iconography.",
+    "toasts": "Use 'sonner' for login feedback."
+  },
+  "accessibility": {
+    "aria": "Add aria-hidden='true' to purely decorative 3D elements. Provide standard HTML fallback text inside <Scroll html> for screen readers.",
+    "motion_prefs": "Respect prefers-reduced-motion: disable complex camera fly-throughs if true.",
+    "contrast": "Ensure the login form on the 3D laptop screen maintains high contrast despite 3D lighting conditions."
+  },
+  "media_and_images": {
+    "image_urls": {
+      "editorial_portrait_1": {
+        "url": "https://images.pexels.com/photos/8250256/pexels-photo-8250256.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Elegant woman in white blazer. Use for 'About Me' section revealed from the books."
+      },
+      "editorial_portrait_2": {
+        "url": "https://images.unsplash.com/photo-1629922944655-a4c0ae9e07f1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwZWRpdG9yaWFsJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzg0NjY3NzI3fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Minimalist portrait near white wall. Alternative for profile/contact."
+      },
+      "texture_grain": {
+        "url": "https://images.pexels.com/photos/20899958/pexels-photo-20899958.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "High-res textured white paper. Use as CSS background image with low opacity for film grain effect."
+      }
+    },
+    "instructions": "Do not use placeholder image services. Apply subtle parallax to HTML images using Framer Motion or Drei's Scroll."
+  },
+  "instructions_to_main_agent": [
+    "Ensure all components and files use `.js` extension, NOT `.tsx`.",
+    "Install required dependencies: yarn add three @react-three/fiber @react-three/drei framer-motion gsap @studio-freight/react-lenis @phosphor-icons/react",
+    "For the laptop model, source a lightweight GLTF/GLB or build a minimal geometric representation if no external asset is accessible. The screen must have an independent rotation axis to animate the 'open' effect.",
+    "Use <Html> from Drei on the laptop screen to build the Shadcn-based Login form.",
+    "Ensure the books are distinct 3D objects with readable spines. Clicking a book should smoothly lerp the camera to focus on it, while displaying an HTML overlay with the contact/details info.",
+    "Keep the aesthetic ruthlessly clean: white/bone background, stark black typography, high-quality lighting."
+  ],
+  "universal_guidelines_for_main_agent": [
+    "Avoid generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur).",
+    "MUST NOT apply universal transition (e.g., transition: all).",
+    "MUST NOT center align the app container (.App { text-align: center; }).",
+    "Every interaction needs micro-animations (hover states, transitions).",
+    "All interactive and key informational elements MUST include a data-testid attribute (kebab-case, role-based)."
+  ]
+}
