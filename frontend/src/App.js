@@ -1,54 +1,55 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-import { HOME } from "@/constants/testIds";
+import Lenis from "lenis";
+import { Toaster } from "sonner";
+import { Navbar } from "./components/Navbar";
+import { Hero } from "./components/Hero";
+import { LaptopSection } from "./components/scene/LaptopSection";
+import { Marquee } from "./components/Marquee";
+import { Manifesto } from "./components/Manifesto";
+import { Projects } from "./components/Projects";
+import { Contact, Footer } from "./components/Contact";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
+function App() {
+  const lenisRef = useRef(null);
+  const [activeProject, setActiveProject] = useState(null);
 
   useEffect(() => {
-    helloWorldApi();
+    const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+    lenisRef.current = lenis;
+    let rafId;
+    const raf = (time) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+    rafId = requestAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, []);
+
+  const handleProjectSelect = useCallback((project) => {
+    setActiveProject(project);
+    lenisRef.current?.scrollTo("#machine", {
+      offset: window.innerHeight * 1.7,
+      duration: 1.8,
+    });
   }, []);
 
   return (
-    <div>
-      <header className="App-header">
-        <a
-          data-testid={HOME.emergentLink}
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
-
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <div className="grain bg-[#f9f9f8] text-[#0a0a0a]">
+      <Toaster position="bottom-center" richColors />
+      <Navbar />
+      <Hero />
+      <LaptopSection activeProject={activeProject} onCloseProject={() => setActiveProject(null)} />
+      <div className="relative z-10">
+        <Marquee />
+        <Manifesto />
+        <Projects onProjectSelect={handleProjectSelect} />
+        <Contact />
+        <Footer />
+      </div>
     </div>
   );
 }
