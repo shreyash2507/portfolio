@@ -1,7 +1,3 @@
-# Here are your Instructions
-
-![image alt](https://github.com/shreyash2507/portfolio/blob/main/web.png)
-
 # 3D Laptop Portfolio
 
 > I build interfaces that feel like objects.

@@ -78,6 +78,13 @@
 .project-row .project-meta {
   transition: color 0.35s ease;
 }
+.dark .project-row:hover {
+  background-color: #f9f9f8;
+}
+.dark .project-row:hover .project-name,
+.dark .project-row:hover .project-meta {
+  color: #0a0a0a;
+}
 
 /* magnetic link underline */
 .u-link {

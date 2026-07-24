@@ -27,17 +27,17 @@ export const BookPanel = ({ book, onClose }) => {
         exit={{ x: "110%" }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         onClick={(e) => e.stopPropagation()}
-        className="absolute top-0 right-0 h-full w-full sm:w-[440px] backdrop-blur-xl bg-[#f9f9f8]/90 border-l border-black/[0.08] px-8 md:px-12 pb-10 pt-24 md:pt-28 flex flex-col overflow-y-auto"
+        className="absolute top-0 right-0 h-full w-full sm:w-[440px] backdrop-blur-xl bg-[#f9f9f8]/90 dark:bg-[#0a0a0a]/90 border-l border-black/[0.08] dark:border-white/[0.08] px-6 sm:px-8 md:px-12 pb-10 pt-24 md:pt-28 flex flex-col overflow-y-auto"
       >
         <div className="flex items-start justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-[#8a8a85]">{book.eyebrow}</p>
-            <h3 className="font-display text-4xl mt-3 tracking-tight">{book.title}</h3>
+            <h3 className="font-display text-3xl sm:text-4xl mt-3 tracking-tight">{book.title}</h3>
           </div>
           <button
             data-testid="book-panel-close-button"
             onClick={onClose}
-            className="flex items-center gap-2 rounded-full border border-black/15 px-4 py-2 text-xs uppercase tracking-[0.15em] hover:bg-[#0a0a0a] hover:text-[#f9f9f8] transition-colors duration-300"
+            className="flex items-center gap-2 rounded-full border border-black/15 dark:border-white/15 px-4 py-2 text-xs uppercase tracking-[0.15em] hover:bg-[#0a0a0a] hover:text-[#f9f9f8] dark:hover:bg-[#f9f9f8] dark:hover:text-[#0a0a0a] transition-colors duration-300"
             aria-label="Close panel"
           >
             <X size={14} /> Close
@@ -46,7 +46,7 @@ export const BookPanel = ({ book, onClose }) => {
 
         <div className="mt-4 h-1 w-12" style={{ background: book.color }} />
 
-        <div className="mt-8 space-y-5 text-[#3c3c3a] leading-relaxed text-[15px]">
+        <div className="mt-8 space-y-5 text-[#3c3c3a] dark:text-[#c4c4c0] leading-relaxed text-[15px]">
           {book.lines.map((line, i) => (
             <motion.p
               key={i}
@@ -63,7 +63,7 @@ export const BookPanel = ({ book, onClose }) => {
           <a
             href={`mailto:${PROFILE.email}`}
             data-testid="book-panel-email-cta"
-            className="mt-8 inline-flex self-start rounded-full bg-[#0a0a0a] text-[#f9f9f8] text-xs uppercase tracking-[0.2em] px-6 py-3 hover:bg-[#333] transition-colors duration-300"
+            className="mt-8 inline-flex self-start rounded-full bg-[#0a0a0a] text-[#f9f9f8] dark:bg-[#f9f9f8] dark:text-[#0a0a0a] text-xs uppercase tracking-[0.2em] px-6 py-3 hover:bg-[#333] dark:hover:bg-[#dcdcd6] transition-colors duration-300"
           >
             Write to me
           </a>

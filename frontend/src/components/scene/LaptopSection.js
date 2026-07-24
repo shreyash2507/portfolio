@@ -50,7 +50,7 @@ export const LaptopSection = ({ activeProject, onCloseProject }) => {
   return (
     <section ref={sectionRef} id="machine" data-testid="laptop-3d-section" className="relative h-[350vh]">
       {/* fixed stage: the canvas never moves in the viewport, so the screen UI can never drift */}
-      <div className="fixed inset-0 h-screen w-full bg-[#eae9e5]" style={{ zIndex: 0 }}>
+      <div className="fixed inset-0 h-screen w-full bg-[#eae9e5] dark:bg-[#151513] transition-colors duration-300" style={{ zIndex: 0 }}>
         <Canvas
           camera={{ position: [0, 3.0, 8.4], fov: 35 }}
           dpr={[1, 1.75]}

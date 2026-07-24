@@ -31,7 +31,7 @@ export const AuthCallback = ({ onDone }) => {
   return (
     <div
       data-testid="auth-callback-screen"
-      className="fixed inset-0 z-[100] bg-[#f9f9f8] flex flex-col items-center justify-center gap-4"
+      className="fixed inset-0 z-[100] bg-[#f9f9f8] dark:bg-[#0a0a0a] text-[#0a0a0a] dark:text-[#f9f9f8] flex flex-col items-center justify-center gap-4"
     >
       <span className="font-display italic text-2xl">Signing you in…</span>
       <span className="text-xs uppercase tracking-[0.3em] text-[#8a8a85]">One moment</span>

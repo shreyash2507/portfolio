@@ -3,7 +3,9 @@ import "@/App.css";
 import Lenis from "lenis";
 import { Toaster } from "sonner";
 import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import { AuthCallback } from "./components/AuthCallback";
+import { CustomCursor } from "./components/CustomCursor";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { LaptopSection } from "./components/scene/LaptopSection";
@@ -40,7 +42,8 @@ function Portfolio() {
   }, []);
 
   return (
-    <div className="grain bg-[#f9f9f8] text-[#0a0a0a]">
+    <div className="grain bg-[#f9f9f8] dark:bg-[#0a0a0a] text-[#0a0a0a] dark:text-[#f9f9f8] transition-colors duration-300">
+      <CustomCursor />
       <Toaster position="bottom-center" richColors />
       <Navbar />
       <Hero />
@@ -63,13 +66,15 @@ function App() {
   );
 
   return (
-    <AuthProvider>
-      {processingAuth ? (
-        <AuthCallback onDone={() => setProcessingAuth(false)} />
-      ) : (
-        <Portfolio />
-      )}
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        {processingAuth ? (
+          <AuthCallback onDone={() => setProcessingAuth(false)} />
+        ) : (
+          <Portfolio />
+        )}
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

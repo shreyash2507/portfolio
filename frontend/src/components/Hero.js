@@ -18,7 +18,7 @@ const Line = ({ children, i, className = "" }) => (
 );
 
 export const Hero = () => (
-  <header id="top" data-testid="hero-section" className="relative z-10 bg-[#f9f9f8] min-h-screen flex flex-col justify-end px-6 md:px-12 pb-16 pt-32">
+  <header id="top" data-testid="hero-section" className="relative z-10 bg-[#f9f9f8] dark:bg-[#0a0a0a] transition-colors duration-300 min-h-screen flex flex-col justify-end px-6 md:px-12 pb-16 pt-32">
     <div className="absolute top-28 left-6 md:left-12 flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#8a8a85]">
       <motion.span
         initial={{ opacity: 0 }}
@@ -43,7 +43,7 @@ export const Hero = () => (
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           data-testid="hero-subtext"
-          className="md:col-span-5 text-base md:text-lg text-[#5c5c5c] leading-relaxed max-w-md"
+          className="md:col-span-5 text-base md:text-lg text-[#5c5c5c] dark:text-[#a3a39e] leading-relaxed max-w-md"
         >
           {PROFILE.tagline} A 3D laptop waits below — scroll down and it will open for you. The books beside it hold everything about me.
         </motion.p>
