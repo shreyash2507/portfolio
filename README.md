@@ -1,6 +1,6 @@
 # 3D Laptop Portfolio
 
-> I build interfaces that feel like objects.
+![image alt](https://github.com/shreyash2507/portfolio/blob/main/web.png)
 
 An award-style developer portfolio built around a single idea: scroll slowly, and a 3D laptop physically opens in front of you — revealing a login screen, live project previews, and a shelf of "books" that double as About/Skills/Work/Contact sections.
 
